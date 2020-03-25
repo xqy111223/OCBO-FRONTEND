@@ -1,0 +1,964 @@
+// cover some element-ui styles
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    width: 60px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+// fix date-picker ui bug in filter-item
+.el-range-editor.el-input__inner {
+  display: inline-flex !important;
+}
+
+/*字体颜色全局样式封装*/
+.color-primary {
+  color: $primary-color;
+}
+
+.color-normal {
+  color: $font-normal-color;
+}
+
+.color-disable {
+  color: $font-disable-color;
+}
+
+.color-label {
+  color: $font-label-color;
+}
+
+/*字体大小全局样式*/
+.font-small {
+  font-size: $font-small-size;
+}
+
+.font-normal {
+  font-size: $font-normal-size;
+}
+
+.font-strong {
+  font-size: $font-strong-size;
+}
+
+/* 分割线 */
+.cy-driver {
+  width: 100%;
+  height: 1px;
+  background-color: #e1e7f0;
+}
+
+/* 表格头部数据 */
+.table-pager {
+  &::before {
+    font-size: $font-small-size;
+    content: '共';
+    display: inline-block;
+    color: #666;
+    margin-right: 5px;
+  }
+
+  &::after {
+    font-size: $font-small-size;
+    content: '条数据';
+    margin-left: 5px;
+    display: inline-block;
+    color: #666;
+  }
+  font-size: $font-small-size;
+  color: $primary-color;
+  display: inline-block;
+}
+
+/* Codyy Custom Style
+--------------------------*/
+$modifier-separator: '--';
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ","};
+  }
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+body {
+
+  [class^="el-icon-custom-"], [class*=" el-icon-custom-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconfont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 美化滚动条 */
+  ::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 8px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #dcdcdc;
+    /* 滚动条颜色 */
+  }
+
+  ::-webkit-scrollbar-track { /* 滚动条里面轨道 */
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background: #eee;
+  }
+
+  .el-breadcrumb {
+    &.many {
+      .el-breadcrumb__item {
+        &:first-child {
+          &::before {
+            font-family: element-icons !important;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            vertical-align: baseline;
+            display: inline-block;
+            -webkit-font-smoothing: antialiased;
+            content: "\E6DE";
+          }
+
+          &:hover {
+            &::before {
+              color: $primary-color;
+            }
+          }
+        }
+
+        &:last-child {
+          .el-breadcrumb__inner {
+            color: $font-label-color;
+
+            &:hover, &:focus, &:active {
+              color: $font-label-color;
+            }
+          }
+        }
+
+        .el-breadcrumb__separator {
+          font-weight: normal;
+          color: $font-label-color;
+        }
+
+        .el-breadcrumb__inner {
+          &.is-link {
+            font-weight: normal;
+            color: $font-disable-color;
+
+            &:hover, &:focus {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    &.single {
+      .el-breadcrumb__item {
+        &::before {
+          display: inline-block;
+          position: absolute;
+          width: 2px;
+          height: 15px;
+          background-color: $primary-color;
+          top: 15px;
+          content: ' ';
+        }
+
+        .el-breadcrumb__inner {
+          margin-left: 5px;
+
+          .no-redirect {
+            color: $font-label-color;
+          }
+        }
+      }
+    }
+  }
+
+  .el-card {
+    margin-bottom: 20px;
+    height: 186px;
+
+    .el-card__body {
+      padding: 26px 14px 21px;
+    }
+  }
+
+  .el-menu {
+    border: 0px;
+
+    > .menu-wrapper {
+      i {
+        margin-right: 12px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .el-button {
+    &.no-radius {
+      border-radius: 0px;
+    }
+
+    @include m(custom) {
+      background-color: #e1e7f0;
+      padding: 9px 15px !important;
+      max-height: 30px;
+      &:hover, &:focus {
+        background-color: $primary-color;
+        color: #fff;
+
+        i {
+          color: #fff;
+        }
+      }
+
+      i {
+        color: $font-disable-color;
+      }
+
+      &:active {
+        color: #fff;
+        border-color: mix(#000, $primary-color, 10%);
+        background-color: mix(#000, $primary-color, 10%);
+
+        i {
+          color: #fff;
+        }
+      }
+      &.is-round {
+        color: $font-label-color;
+        border: 0px;
+
+        &:hover, &:focus, &:active {
+          color: #fff;
+        }
+      }
+    }
+
+    @include m(border) {
+      border: solid 1px #e1e7f0;
+      background-color: #fff;
+      &:hover, &:focus {
+        background-color: #fff;
+      }
+    }
+
+    @include m(border-primary) {
+      border: solid 1px #e1e7f0;
+      background-color: #fff;
+      &:hover, &:focus {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        color: #fff;
+      }
+      &:active {
+        border-color: mix(#000, $primary-color, 10%);
+        background-color: mix(#000, $primary-color, 10%);
+        color: #fff;
+      }
+    }
+
+    @include m(info) {
+      color: $font-normal-color;
+      &:active, &:hover, &:focus {
+        color: $font-normal-color;
+      }
+    }
+  }
+
+  .el-dropdown {
+    > .el-dropdown-link {
+      color: $primary-color;
+      padding: 4px 10px;
+
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+        border-radius: 14px;
+
+        i::before {
+          content: "\E6E1";
+        }
+      }
+    }
+  }
+
+  .el-cascader {
+    @include m(round) {
+      line-height: 32px;
+      .el-input {
+        width: 200px;
+
+        .el-input__inner {
+          font-size: 12px;
+        }
+      }
+      .el-input__icon {
+        line-height: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .el-pagination {
+    font-weight: normal;
+
+    &.is-background {
+      .el-pager li:not(.disabled) {
+        background-color: transparent;
+      }
+
+      .el-pager li:not(.disabled).active {
+        background-color: #eaf2ff;
+        color: $font-normal-color;
+
+        &:hover, &:focus {
+          color: $primary-color;
+          background-color: #eaf2ff;
+        }
+      }
+
+      .el-input__inner {
+        border-radius: 13px;
+      }
+
+      span:not([class*=suffix]) {
+        text-align: center;
+      }
+    }
+  }
+
+  .el-tag {
+    @include m(default) {
+      background-color: #e4ebf7;
+      border-color: #e4ebf7;
+      color: $font-normal-color;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 14px;
+      .el-tag__close {
+        color: $font-danger-color;
+
+        &:hover, &:focus {
+          color: $font-danger-color;
+          background-color: mix($primary-color, #fff, 10%);
+        }
+
+        &:active {
+          background-color: mix($primary-color, #fff, 20%);
+        }
+      }
+    }
+  }
+
+  .el-message-box {
+    border: 0px;
+    padding-bottom: 40px;
+    width: auto;
+    min-width: 320px;
+    max-width: 380px;
+
+    > .el-message-box__header {
+      padding: 12px 10px 12px 20px;
+
+      > .el-message-box__title {
+        font-size: $font-normal-size;
+        color: #fff;
+      }
+
+      > .el-message-box__headerbtn {
+        top: 10px;
+        right: 10px;
+
+        > .el-message-box__close {
+          font-weight: bold;
+        }
+      }
+    }
+
+    > .el-message-box__content {
+      padding: 10px 15px;
+
+      > .el-message-box__status {
+        display: block;
+        margin-top: 20px;
+        position: relative;
+        font-size: 40px !important;
+        text-align: center;
+        line-height: .9;
+        margin-bottom: -40px;
+      }
+
+      > .el-message-box__message {
+        margin-top: 40px;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+
+        .el-message-box__body__leaf {
+          font-size: $font-small-size;
+          color: $font-disable-color;
+        }
+      }
+    }
+
+    > .el-message-box__btns {
+      padding: 20px 15px 0px;
+      text-align: center;
+
+      .el-button {
+        padding: 8px 25px !important;
+        border-radius: 14px;
+      }
+    }
+
+    &.el-confirm {
+      border-radius: 10px 10px 5px 5px;
+      overflow: inherit;
+
+      .el-message-box__header {
+        background-color: $header-color;
+        border-radius: 5px 5px 0px 0px;
+
+        > .el-message-box__headerbtn {
+
+          > .el-message-box__close {
+            color: #fff;
+          }
+        }
+      }
+
+      > .el-message-box__content {
+        > .el-message-box__status {
+          margin-top: 30px;
+        }
+
+        .el-message-box__body__primary {
+          color: $primary-color;
+        }
+
+        .el-message-box__body__danger {
+          color: $font-danger-color;
+        }
+      }
+    }
+  }
+
+  .el-dialog {
+    border-radius: 10px 10px 5px 5px;
+
+    > .el-dialog__header {
+      background-color: $header-color;
+      border-radius: 5px 5px 0px 0px;
+      padding: 10px 10px 8px 20px;
+
+      > .el-dialog__title {
+        font-size: $font-normal-size;
+        color: #fff;
+      }
+
+      > .el-dialog__headerbtn {
+        top: 10px;
+        right: 10px;
+
+        > .el-dialog__close {
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+    }
+
+    > .el-dialog__body {
+      padding: 20px 40px;
+      max-height: 400px;
+      overflow: auto;
+    }
+
+    > .el-dialog__footer {
+      text-align: center;
+      padding: 20px 30px 40px 30px;
+    }
+  }
+
+  .el-input {
+    @include m(date-round) {
+      .el-input__inner {
+        height: 32px;
+        line-height: 32px;
+        border-radius: 14px;
+
+        &.el-input__inner {
+          width: 200px;
+        }
+      }
+
+      .el-input__icon {
+        line-height: 32px;
+      }
+    }
+
+    @include m(round-mini) {
+      width: 50px;
+      > .el-input__inner {
+        border-radius: 16px;
+        height: 32px;
+        font-size: 12px;
+        line-height: 32px;
+      }
+      .el-input__prefix {
+        line-height: 32px;
+
+        .el-input__icon {
+          line-height: 32px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    @include m(round-small) {
+      width: 90px;
+      > .el-input__inner {
+        border-radius: 16px;
+        height: 32px;
+        font-size: 12px;
+        line-height: 32px;
+        padding: 0px 11px;
+      }
+      .el-input__prefix {
+        line-height: 32px;
+
+        .el-input__icon {
+          line-height: 32px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    @include m(round) {
+      width: 200px;
+      > .el-input__inner {
+        border-radius: 16px;
+        height: 32px;
+        font-size: 12px;
+        line-height: 32px;
+      }
+      .el-input__prefix {
+        line-height: 32px;
+
+        .el-input__icon {
+          line-height: 32px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    @include m(round-large) {
+      width: 300px;
+      > .el-input__inner {
+        border-radius: 20px;
+        height: 40px;
+        line-height: 40px;
+      }
+      .el-input__prefix {
+        line-height: 40px;
+
+        .el-input__icon {
+          line-height: 32px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .el-select {
+    @include m(round) {
+      line-height: 32px;
+      height: 32px;
+      .el-input__icon {
+        line-height: 32px;
+      }
+      .el-input {
+        .el-input__inner {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .el-table {
+    .el-table__expand-icon {
+      > .el-icon-arrow-right {
+        font-family: iconfont !important;
+        font-size: 14px;
+      }
+      > .el-icon-arrow-right:before {
+        content: "\e633";
+      }
+      &.el-table__expand-icon--expanded {
+        transform: rotate(0deg);
+        > .el-icon-arrow-right:before {
+          content: "\e635";
+        }
+      }
+    }
+
+
+    .el-table__fixed::before, .el-table__fixed-right::before {
+      height: 0;
+    }
+
+    .el-table__body tr.table-body-default.el-table__row--striped td {
+      background-color: #f7f7f7;
+    }
+
+    .el-table__body tr td {
+      border-bottom: 0px;
+    }
+
+    .el-table__body tr.table-body-tree td {
+      border-top: 1px solid #ebeef5
+    }
+
+    .el-table__body tr.table-body-tree:first-child {
+      td {
+        border-top: 0px;
+      }
+    }
+
+    .el-table__body tr.table-body-tree {
+      &.el-table__row--level-2, &.el-table__row--level-3, &.el-table__row--level-4, &.el-table__row--level-5, &.el-table__row--level-6 {
+        background-color: #f8f8f8;
+      }
+      &.el-table__row--level-1 td, &.el-table__row--level-2 td, &.el-table__row--level-3 td, &.el-table__row--level-4 td, &.el-table__row--level-5 td {
+        border-top: 1px dashed #ebeef5;
+        margin-top: -1px;
+      }
+    }
+
+    tr.hover-row {
+      a {
+        &[type=btn] {
+          font-weight: bold;
+        }
+      }
+    }
+
+    &::before {
+      height: 0;
+    }
+
+    .table-header-default {
+      &::after {
+        display: block;
+        content: ' ';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0px;
+        width: 10px;
+        background-color: #fff;
+      }
+
+      th {
+        font-weight: normal;
+        background-color: #fff;
+      }
+    }
+  }
+
+  .el-range-editor, .el-date-editor--daterange {
+    @include m(round) {
+      height: 32px;
+      line-height: 32px;
+      border-radius: 14px;
+      &.el-input__inner {
+        width: 200px;
+      }
+      .el-range-input {
+        font-size: $font-small-size;
+      }
+      .el-range-separator, .el-range__icon, .el-range__close-icon {
+        max-width: 20px;
+        line-height: 24px;
+      }
+      .el-range-separator {
+        padding: 0px;
+      }
+    }
+  }
+
+  .el-date-editor {
+    &.el-input--date-round.el-input {
+      width: 200px;
+
+      .el-input__inner {
+        font-size: 12px;
+      }
+    }
+  }
+
+
+  //.custom-tree.el-tree > .el-tree-node:after {
+  //  border-top: none;
+  //}
+  //
+  //.custom-tree.el-tree > .el-tree-node:before {
+  //  border-left: 1px dashed #c0c4cc;
+  //  top: 18px;
+  //  left: 12px;
+  //  height: 13px;
+  //}
+  //
+  //.custom-tree.el-tree > .el-tree-node:nth-last-child(2) {
+  //  &:before {
+  //    border-left: none;
+  //  }
+  //}
+
+  .el-input .el-input__count .el-input__count-inner {
+    color: #347EFF;
+  }
+
+  .custom-tree > .el-tree-node:nth-last-child(2) {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      bottom: 28px;
+      border-left: 1px solid white;
+      left: 12px;
+      z-index: 2;
+    }
+  }
+  .custom-tree {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      bottom: 28px;
+      border-left: 1px dashed #c0c4cc;
+      left: 12px;
+      z-index: 2;
+    }
+    .el-tree-node {
+      position: relative;
+      padding-left: 49px;
+    }
+    > .el-tree-node {
+      padding-left: 0px;
+    }
+    .el-tree-node {
+      &:before {
+        content: '';
+        position: absolute;
+        top: -25px;
+        bottom: 23px;
+        border-left: 1px dashed #c0c4cc;
+        left: 61px;
+        z-index: 4;
+      }
+      &.is-expanded {
+        &:before {
+          bottom: initial;
+          height: 18px;
+          top: -4px;
+        }
+        > .el-tree-node__content {
+          .el-checkbox {
+            &:before {
+              border-left: 1px dashed #c0c4cc;
+              content: '';
+              position: absolute;
+              top: 5px;
+              bottom: -7px;
+              left: 7px;
+            }
+          }
+        }
+      }
+    }
+    > .el-tree-node {
+      &.is-expanded {
+        &:before {
+          top: 26px;
+          height: 1000px;
+        }
+      }
+      &:before, &:after {
+        border-left: none;
+        border-top: none;
+        position: inherit;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+      }
+    }
+
+    .el-tree-node__content {
+      height: 40px;
+    }
+
+    .el-checkbox {
+      margin-left: 30px;
+    }
+
+    .el-tree-node__expand-icon {
+      &:after {
+        content: '';
+        border-top: 1px dashed #c0c4cc;
+        top: 11px;
+        position: absolute;
+        width: 38px;
+        left: 13px;
+      }
+    }
+
+    .el-tree-node__expand-icon.expanded {
+      &::before {
+        content: '\e635';
+      }
+    }
+    .el-tree-node__expand-icon.expanded {
+      transform: rotate(0deg);
+    }
+  }
+
+  a {
+    cursor: pointer;
+
+    &[type=text] {
+      font-size: $font-small-size;
+      color: $primary-color;
+    }
+
+    &[type=link] {
+      text-decoration: underline;
+      color: $font-label-color;
+      font-size: $font-normal-size;
+    }
+
+    &[type=btn] {
+      font-size: $font-normal-size;
+      color: $primary-color;
+
+      &[color=danger] {
+        color: #888;
+
+        &:hover, &:focus {
+          color: $font-danger-color
+        }
+
+        &:active {
+          color: mix(#000, $font-danger-color, 10%);
+        }
+      }
+    }
+
+    &[type=btn], &[type=link], &[type=text] {
+      &:hover, &:focus {
+        color: $font-hover-color;
+        font-weight: bold;
+      }
+
+      &:active {
+        color: mix(#000, $font-hover-color, 0%);
+      }
+    }
+  }
+
+}

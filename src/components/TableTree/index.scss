@@ -1,0 +1,138 @@
+// color
+$white: #ffffff;
+$border: #e9eaec;
+$hoverRow: #f3f3f3;
+$backgroundRow: #f8f8f9;
+
+.table-tree {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $white;
+  border: 0;
+  font-size: 14px;
+  line-height: 26px;
+  color: #a5a6bb;
+  overflow: hidden;
+
+  .table-tree__header-wrapper,
+  .table-tree__footer-wrapper {
+    overflow: hidden;
+  }
+
+  .table-tree__body-wrapper {
+    overflow: auto;
+  }
+
+  .table-tree__header,
+  .table-tree__body,
+  .table-tree__footer {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .table-tree__header-row {
+    height: 45px;
+    box-sizing: border-box;
+    background-color: $white;
+    border-bottom: 1px solid $border;
+
+    th {
+      font-weight: normal;
+    }
+  }
+
+
+  .table-tree__body-row {
+    height: 40px;
+    box-sizing: border-box;
+    color: #293152;
+
+    &:not(:first-of-type) {
+      border-top: 1px solid $border;
+
+      &.table-tree__body-row__level {
+        border-top: 1px dashed $border;
+      }
+    }
+  }
+
+  .table-tree__header-cell,
+  .table-tree__body-cell {
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: middle;
+    word-break: break-all;
+    overflow: hidden;
+  }
+
+  .table-tree__cell-inner {
+    padding: 6px 12px;
+
+    .table-tree__firstProp {
+      cursor: pointer;
+    }
+  }
+
+  .table-tree--empty-row {
+    height: 80px;
+  }
+
+  .table-tree--empty-content {
+    text-align: center;
+  }
+
+  .table-tree--center-cell {
+    text-align: center;
+  }
+
+  .table-tree--right-cell {
+    text-align: right;
+  }
+
+  .table-tree--stripe-row {
+    background-color: $backgroundRow;
+  }
+
+  .table-tree--row-hover {
+    background-color: $hoverRow;
+  }
+
+  .table-tree--border-cell {
+    &:not(:last-of-type) {
+      border-right: 1px solid $border;
+    }
+  }
+
+  .table-tree--tree-icon {
+    margin-right: 6px;
+    cursor: pointer;
+  }
+
+  .table-tree--expand-inner {
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+  }
+
+  .table-tree--expanded-inner {
+    transform: rotate(90deg);
+  }
+
+  .table-tree--expand-content {
+    padding: 20px;
+  }
+
+  tr[level='4'] {
+    .table-tree__firstProp {
+      font-weight: bold;
+    }
+  }
+
+  /* 现在先支持8级，正常肯定都是够了 */
+  tr[level='3'], tr[level='4'], tr[level='5'], tr[level='6'], tr[level='7'], tr[level='8'] {
+    background-color: #f8f8f8;
+  }
+}
